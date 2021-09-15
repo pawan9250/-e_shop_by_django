@@ -1,0 +1,167 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load cart %}
+{% load static %}  
+<!-- Start page content --> 
+<div class="container">
+    <div class="row my-4 my-md-5">
+          <div class=" col-md-4 col-lg-3">
+              <h2 class="font-16 semi-font fables-forth-text-color fables-light-gary-background  p-3 mb-4">Product Categories</h2>
+              {% for category in categories %}
+                <a href="men?category={{category.id}}"
+                    class="list-group-item list-group-item-action">{{category.name}}</a>
+                {% endfor %}
+
+          </div>
+
+          <div class="col-md-8 col-lg-9"> 
+                  <div class="row mb-4">
+                      <div class="col-12 col-lg-4">
+                          <form> 
+                             <div class="form-group mb-0"> 
+                               <select class="form-control rounded-0" hidden="true">
+                               </select>
+                             </div> 
+                           </form>
+                      </div>
+                      <div class="col-4 col-md-6 col-lg-2 offset-lg-6 text-center pl-0 d-none d-lg-block">
+                          <span class="fables-iconlist fa-fw fables-view-btn fables-list-btn fables-third-border-color fables-third-text-color"></span>
+                          <span class="fables-icongrid active fa-fw fables-view-btn fables-grid-btn fables-third-border-color fables-third-text-color"></span>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    {% for product in products %}
+                      <div class="col-sm-6 col-lg-4 fables-product-block">
+                        
+                          <div class="card rounded-0 mb-4">
+                            
+                              <div class="row">
+                                
+                                  <div class="fables-product-img col-12">
+                                  
+                                     <img class="card-img-top rounded-0" src="{{product.image.url}}" alt="dress fashion"> 
+                                     <div class="fables-img-overlay">  
+                                     </div>
+                                 </div>
+                                 <div class="card-body col-12">
+                                   <h5 class="card-title mx-xl-3">
+                                       <a href="#" class="fables-main-text-color fables-store-product-title fables-second-hover-color"></a>
+                                   </h5>
+                                   <p class="store-card-text fables-fifth-text-color font-15 mx-xl-3">{{product.name}}</p>
+                                   <p class="font-15 font-weight-bold fables-second-text-color my-2 mx-xl-3">{{product.price}}</p>
+                                   <a href="{% url 'product' product.id %}"><p class="card-text fables-fifth-text-color font-15 mx-3"><b>View</b></p></a>
+                                   
+                                {% if product|is_in_cart:request.session.cart %}
+                                    <form action="cart" class="col-1" method="post">
+                                    {% csrf_token %}
+                                    <input hidden type="text" name='product' value='{{product.id}}'>
+                                    <input hidden type="text" name='remove' value='True' class="">
+                                    <p class="fables-product-info"><button type="submit" class="btn btn-block btn-link fables-second-border-color fables-second-text-color fables-btn-rouned fables-hover-btn-color font-14 p-2 px-2 px-xl-4">
+                                    <span class="fables-btn-value">-</span></button></p>
+                                </form>
+                            
+                                <div class="text-center col">
+                                {{product|cart_quantity:request.session.cart}} in Cart</div>
+                                <div class="row">
+                                <form action="cart" class="col-1" method="post">
+                                    {% csrf_token %}
+                                    <input hidden type="text" name='product' value='{{product.id}}'>
+                                    <p class="fables-product-info"><button type="submit" class="btn btn-block btn-link fables-second-border-color fables-second-text-color fables-btn-rouned fables-hover-btn-color font-14 p-2 px-2 px-xl-4">
+                                    <span class="fables-btn-value">+</span></button></p>
+                                </form></div>
+                                {% else %}
+                                <form action="cart" method="POST" class="btn-block">
+                                    {% csrf_token %}
+                                    <input hidden type="text" name='product' value='{{product.id}}'>
+                                   <p class="fables-product-info"><button type="submit" class="btn btn-link fables-second-border-color fables-second-text-color fables-btn-rouned fables-hover-btn-color font-14 p-2 px-2 px-xl-4">
+                                   <span class="fables-iconcart"></span> 
+                                   <span class="fables-btn-value">ADD TO CART</span></button></p>
+                                </form>
+                                {% endif %}
+                                </div>
+                                
+                              </div>
+                            
+                           </div>
+                           
+                      </div>
+                    {% endfor %}                                
+                  </div>
+                 
+          </div>
+    </div>
+
+</div> 
+<!-- /End page content -->
+   
+   
+
+    
+<!-- Start Footer  Background Image  -->
+<div class="fables-footer-image fables-after-overlay white-color py-4 py-lg-5 bg-rules">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-2 mb-5 text-center">
+                <h2 class="font-30 semi-font mb-5">Newsletter</h2>
+                <form class="form-inline position-relative"> 
+                  <div class="form-group fables-subscribe-formgroup"> 
+                    <input type="email" class="form-control fables-subscribe-input fables-btn-rouned" placeholder="Your Email">
+                  </div>
+                  <button type="submit" class="btn fables-second-background-color fables-btn-rouned fables-subscribe-btn">Subscribe</button>
+                </form>
+                
+            </div>
+            <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                <a href="#" class="fables-second-border-color border-bottom pb-3 d-block mb-3 mt-minus-13"><img src="{% static 'assets/custom/images/fables-logo.png' %}" alt="fables template"></a>
+                <p class="font-15 fables-third-text-color">
+                  eCom is the Online Fashion Store, serving men's , women's latest fastion products all over India.
+               
+     
+                </p> 
+                
+            </div>
+             
+            <div class="col-12 col-sm-6 col-lg-4">
+                <h2 class="font-20 semi-font fables-second-border-color border-bottom pb-3">Contact us</h2>
+               <div class="my-3">
+                    <h4 class="font-16 semi-font"><span class="fables-iconmap-icon fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Address Information</h4>
+                    <p class="font-14 fables-fifth-text-color mt-2 ml-4">Berasia , 463106</p>
+                </div>
+                <div class="my-3">
+                    <h4 class="font-16 semi-font"><span class="fables-iconphone fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Call Now </h4>
+                    <p class="font-14 fables-fifth-text-color mt-2 ml-4">+91 9179045012</p>
+                </div>
+                <div class="my-3">
+                    <h4 class="font-16 semi-font"><span class="fables-iconemail fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Mail </h4>
+                    <p class="font-14 fables-fifth-text-color mt-2 ml-4">support@ecom.com</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <h2 class="font-20 semi-font fables-second-border-color border-bottom pb-3 mb-3">EXPLORE OUR SITE</h2>
+                <ul class="nav fables-footer-links">
+                    <li><a href="about1.html">About Us</a></li>
+                    <li><a href="contactus1.html">Contact Us</a></li>
+                 
+                </ul>
+            </div>
+                      
+        </div> 
+        
+        </div>
+</div>
+<div class="copyright fables-main-background-color mt-0 border-0 white-color">
+        <ul class="nav fables-footer-social-links just-center fables-light-footer-links">
+            <li><a href="#" target="_blank"><i class="fab fa-google-plus-square"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-pinterest-square"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+        <p class="mb-0">Copyright © eCom 2021. All rights reserved.</p> 
+
+</div>
+<!-- /End Footer 2 Background Image -->
+{% endblock %}
