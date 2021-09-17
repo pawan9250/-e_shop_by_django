@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd5q80s65jmhgh1',
-        'USER': 'odwcjoveqerrqv',
-        'PASSWORD': '1661177aeea8960aa3b7ebb9c304af10e7de8c9e27142cfa7f71f030f5917175',
-        'HOST': 'ec2-54-146-84-101.compute-1.amazonaws.com'
+        'NAME': 'd96lf89mnbm83f',
+        'USER': 'fzdrjgszjcuulw',
+        'PASSWORD': '20238d0e7673257c902d4dbb364cfd0e3da07625cee0aec517cb3e7f89ec4053',
+        'HOST': 'ec2-3-219-111-26.compute-1.amazonaws.com'
     }
 }
 
