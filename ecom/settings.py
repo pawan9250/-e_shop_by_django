@@ -74,13 +74,22 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'ecom',
+ #       'USER': 'postgres',
+  #      'PASSWORD': 'pawan2021',
+   #     'HOST': 'localhost'
+    #}
+#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecom',
-        'USER': 'postgres',
-        'PASSWORD': 'pawan2021',
-        'HOST': 'localhost'
+        'NAME': 'd5q80s65jmhgh1',
+        'USER': 'odwcjoveqerrqv',
+        'PASSWORD': '1661177aeea8960aa3b7ebb9c304af10e7de8c9e27142cfa7f71f030f5917175',
+        'HOST': 'ec2-54-146-84-101.compute-1.amazonaws.com'
     }
 }
 
@@ -122,8 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = "/image/products/"
-MEDIA_ROOT = BASE_DIR
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
