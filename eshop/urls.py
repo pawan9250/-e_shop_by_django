@@ -1,6 +1,5 @@
 from django.urls import path
 from eshop import views
-from . import settings
 
 urlpatterns = [
     path("", views.home, name="home"),
