@@ -1,5 +1,6 @@
 from django.urls import path
 from eshop import views
+from . import settings
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -19,3 +20,7 @@ urlpatterns = [
     path("thankyou", views.thankyou, name="thankyou"), 
     path("contactus", views.contactus, name="contactus"), 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
