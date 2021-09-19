@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-20%pr4u=g!j73l7k(t)2^!5whe2nj(rgq2e1yulw-c+pc2tb@m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['e-ecom-1.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -74,24 +74,24 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql',        
+    'NAME': 'ecom',
+    'USER': 'postgres',
+    'PASSWORD': 'pawan2021',
+    'HOST': 'localhost'
+    }
+}
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'ecom',
- #       'USER': 'postgres',
-  #      'PASSWORD': 'pawan2021',
-   #     'HOST': 'localhost'
-    #}
+#        'NAME': 'd96lf89mnbm83f',
+#        'USER': 'fzdrjgszjcuulw',
+#        'PASSWORD': '20238d0e7673257c902d4dbb364cfd0e3da07625cee0aec517cb3e7f89ec4053',
+#        'HOST': 'ec2-3-219-111-26.compute-1.amazonaws.com'
+#    }
 #}
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd96lf89mnbm83f',
-        'USER': 'fzdrjgszjcuulw',
-        'PASSWORD': '20238d0e7673257c902d4dbb364cfd0e3da07625cee0aec517cb3e7f89ec4053',
-        'HOST': 'ec2-3-219-111-26.compute-1.amazonaws.com'
-    }
-}
 
 
 # Password validation
@@ -131,9 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-MEDIA_URL = "/imageseshop/static/uploads/products/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/image/products/"
+MEDIA_ROOT = BASE_DIR
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
